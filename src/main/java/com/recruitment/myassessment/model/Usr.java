@@ -5,32 +5,35 @@ import java.util.List;
 
 @Entity
 @Table(name = "User")
-public class User {
+public class Usr {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column(name = "id_user")
-    private Long id;
+    @Column(name = "IdUser")
+    private Long idUser;
 
-    @Column(name = "nama")
-    private String nama;
+    @Column(name = "EserName")
+    private String userName;
 
-    @Column(name = "email")
+    @Column(name = "Email")
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "Password")
     private String password;
 
-    @Column(name = "isAdmin", nullable = true, columnDefinition = "BOOLEAN DEFAULT false")
+    @Column(name = "Nama")
+    private String nama;
+
+    @Column(name = "IsAdmin", nullable = true, columnDefinition = "BOOLEAN DEFAULT false")
     private Boolean isAdmin;
 
-    @Column(name = "isUser", nullable = true, columnDefinition = "BOOLEAN DEFAULT true")
+    @Column(name = "IsUser", nullable = true, columnDefinition = "BOOLEAN DEFAULT true")
     private boolean isUser;
 
-    @Column(name = "token", nullable = true)
+    @Column(name = "Token", nullable = true)
     private String token;
 
-    @Column(name = "isActive", columnDefinition = "BOOLEAN DEFAULT true")
+    @Column(name = "IsActive", columnDefinition = "BOOLEAN DEFAULT true")
     private Boolean isActive;
 
     @OneToMany(mappedBy = "user")
@@ -40,20 +43,20 @@ public class User {
     @JoinTable(name = "user_assessment", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "assessment_id"))
     private List<Assessment> assessments;
 
-    public Long getId() {
-        return id;
+    public Long getIdUser() {
+        return idUser;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
     }
 
-    public String getNama() {
-        return nama;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getEmail() {
@@ -70,6 +73,30 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public Boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(Boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+    public boolean isUser() {
+        return isUser;
+    }
+
+    public void setUser(boolean isUser) {
+        this.isUser = isUser;
     }
 
     public String getToken() {
@@ -103,23 +130,5 @@ public class User {
     public void setAssessments(List<Assessment> assessments) {
         this.assessments = assessments;
     }
-
-    public Boolean getIsAdmin() {
-        return isAdmin;
-    }
-
-    public void setIsAdmin(Boolean isAdmin) {
-        this.isAdmin = isAdmin;
-    }
-
-    public boolean isUser() {
-        return isUser;
-    }
-
-    public void setUser(boolean isUser) {
-        this.isUser = isUser;
-    }
-
-    // getters and setters
 
 }

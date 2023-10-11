@@ -38,7 +38,6 @@ public class JwtUtility implements Serializable {
                 mapz.put("userId", claims.get("uid"));
                 mapz.put("userName", claims.getSubject());// untuk subject / username sudah ada di claims token JWT
                 mapz.put("email", claims.get("mail"));
-                mapz.put("noHp", claims.get("phone"));
                 mapz.put("isValid", true);
             }
         }

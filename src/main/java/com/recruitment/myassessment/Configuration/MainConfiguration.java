@@ -17,18 +17,16 @@ public class MainConfiguration {
     @Autowired
     private Environment environment;
 
-    // @Primary
-    // @Bean
-    // public DataSource getDataSource() {
-    // DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-    // dataSourceBuilder.driverClassName(environment.getProperty("spring.datasource.driverClassName"));
-    // dataSourceBuilder.url(environment.getProperty("spring.datasource.url"));
-    // dataSourceBuilder.username(environment.getProperty("spring.datasource.username"));//
-    // environment.getProperty("spring.datasource.user")
-    // dataSourceBuilder.password(Crypto.performDecrypt(environment.getProperty("spring.datasource.password")));//
-    // environment.getProperty("spring.datasource.password")
-    // return dataSourceBuilder.build();
-    // }
+    @Primary
+    @Bean
+    public DataSource getDataSource() {
+        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+        dataSourceBuilder.driverClassName(environment.getProperty("spring.datasource.driverClassName"));
+        dataSourceBuilder.url(environment.getProperty("spring.datasource.url"));
+        dataSourceBuilder.username(environment.getProperty("spring.datasource.username"));// environment.getProperty("spring.datasource.user")
+        dataSourceBuilder.password(Crypto.performDecrypt(environment.getProperty("spring.datasource.password")));// environment.getProperty("spring.datasource.password")
+        return dataSourceBuilder.build();
+    }
 
     @Bean
     public ModelMapper modelMapper() {

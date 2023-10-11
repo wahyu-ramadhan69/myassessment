@@ -1,38 +1,45 @@
 package com.recruitment.myassessment.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.recruitment.myassessment.dto.UserDTO;
-import com.recruitment.myassessment.model.User;
-import com.recruitment.myassessment.repo.UserRepo;
-import com.recruitment.myassessment.service.UserService;
+import com.recruitment.myassessment.model.Usr;
+import com.recruitment.myassessment.service.UsrService;
 
 @RestController
 @RequestMapping("/open")
 public class OpenController {
-    private UserService userService;
-    private UserRepo userRepo;
+    private UsrService usrService;
     private ModelMapper modelMapper;
+    private AuthenticationManager authenticationManager;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public OpenController() {
+    public OpenController(UsrService usrService, ModelMapper modelMapper, AuthenticationManager authenticationManager,
+            BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.usrService = usrService;
         this.modelMapper = modelMapper;
-        this.userService = userService;
+        this.authenticationManager = authenticationManager;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    @PostMapping("/")
+    @PostMapping("/v1/regis")
     public ResponseEntity<Object> regis(@RequestBody UserDTO userDTO, HttpServletRequest request) {
-        User user = modelMapper.map(userDTO, new TypeToken<User>() {
+        Usr usr = modelMapper.map(userDTO, new TypeToken<Usr>() {
         }.getType());
-        return userService.registrationUser(user, request);
+        ;
+        return usrService.registrationUser(usr, request);
     }
 }

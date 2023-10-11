@@ -14,7 +14,7 @@ public class Result {
 
     @Column(name = "final_score")
     private double finalScore;
-    
+
     @Column(name = "createdAt")
     private Date createdAt;
 
@@ -24,8 +24,8 @@ public class Result {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
-    
+    private Usr user;
+
     @OneToMany(mappedBy = "result")
     private List<UserAnswer> answers;
 

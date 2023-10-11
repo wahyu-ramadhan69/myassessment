@@ -9,16 +9,16 @@ public class UserAnswer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user_answer")
     private Long id;
-    
+
     @Column(name = "value")
     private String value;
-    
+
     @Column(name = "score")
     private double score;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private Usr user;
 
     @ManyToOne
     @JoinColumn(name = "result_id")
@@ -49,11 +49,11 @@ public class UserAnswer {
         this.score = score;
     }
 
-    public User getUser() {
+    public Usr getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Usr user) {
         this.user = user;
     }
 
@@ -65,6 +65,4 @@ public class UserAnswer {
         this.result = result;
     }
 
-    
 }
-

@@ -4,10 +4,13 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.recruitment.myassessment.model.User;
+import com.recruitment.myassessment.model.Usr;
 
-public interface UserRepo extends JpaRepository<User, Long> {
-    User findByEmail(String email);
+public interface UserRepo extends JpaRepository<Usr, Long> {
 
-    public Optional<User> findByEmailAndIsActive(String email, Boolean isActive);
+    public Optional<Usr> findByUserNameOrEmail(String userName, String email);
+
+    public Optional<Usr> findByUserName(String userName);
+
+    public Optional<Usr> findByUserNameAndIsActive(String userName, Boolean isActive);
 }

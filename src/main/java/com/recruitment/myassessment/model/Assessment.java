@@ -9,31 +9,29 @@ import java.util.List;
 public class Assessment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
+
     @Column(name = "id_assessment")
     private Long id;
 
     @Column(name = "title")
     private String title;
-    
+
     @Column(name = "password")
     private String password;
 
     @Column(name = "closeDate")
     private Date closeDate;
-    
+
     @ManyToMany
-    @JoinTable(name = "user_assessment",
-        joinColumns = @JoinColumn(name = "assessment_id"),
-        inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private List<User> participants;
-    
+    @JoinTable(name = "user_assessment", joinColumns = @JoinColumn(name = "assessment_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private List<Usr> participants;
+
     @OneToMany(mappedBy = "assessment")
     private List<Result> results;
-    
+
     @OneToMany(mappedBy = "assessment")
     private List<Question> questions;
-    
+
     // getters and setters
 
     public Long getId() {
@@ -68,11 +66,11 @@ public class Assessment {
         this.closeDate = closeDate;
     }
 
-    public List<User> getParticipants() {
+    public List<Usr> getParticipants() {
         return participants;
     }
 
-    public void setParticipants(List<User> participants) {
+    public void setParticipants(List<Usr> participants) {
         this.participants = participants;
     }
 
@@ -91,9 +89,5 @@ public class Assessment {
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
-    
-    
 
-    
 }
-
